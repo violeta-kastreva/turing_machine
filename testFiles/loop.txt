@@ -1,0 +1,9 @@
+LOOP
+0{s}->0{q}R
+1{s}->1{q}L
+ {s}-> {halt}S
+POST LOOP MACHINE STATES
+0{q}->1{halt}S
+1{q}->0{halt}S
+ {q}->1{halt}S
+>0000

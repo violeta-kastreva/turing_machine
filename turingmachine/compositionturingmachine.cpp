@@ -91,7 +91,7 @@ void CompositionTuringMachine::run(const std::string &outputFileName) {
 }
 
 /**
-* Constructor of a Turing Machine by a given input file, calls the initializing method
+* Constructor of a Compotision Turing Machine by a given input file, calls the initializing method
 */
 CompositionTuringMachine::CompositionTuringMachine(const std::string& fileName) {
     init(fileName);

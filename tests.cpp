@@ -3,6 +3,8 @@
 #include "turingmachine/turingmachine.h"
 #include "turingmachine/turingmachinefactory.h"
 #include "turingmachine/compositionturingmachine.h"
+#include "turingmachine/conditionalturingmachine.h"
+#include "turingmachine/iterationturingmachine.h"
 
 TEST_CASE("Testing Basic Turing Machine") {
     TuringMachine tm("../testFiles/basic_regular.txt");
@@ -31,4 +33,12 @@ TEST_CASE("Testing Factory Composition Turing Machine") {
     tm->run("../testFiles/composition_output_factory.txt");
 }
 
+TEST_CASE("Testing Conditional Composition Turing Machine") {
+    ConditionalCompositionTuringMachine tm("../testFiles/conditional.txt");
+    tm.run("../testFiles/conditional_output.txt");
+}
 
+TEST_CASE("Testing Loop Turing Machine") {
+    IterationLoopTuringMachine tm("../testFiles/loop.txt");
+    tm.run("../testFiles/loop_output.txt");
+}

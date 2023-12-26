@@ -3,4 +3,4 @@ project(turing_machine)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(turing_machine doctest.h turingmachine/turingmachine.h tests.cpp turingmachine/turingmachine.cpp turingmachine/iterationturingmachine.h turingmachine/iterationturingmachine.cpp turingmachine/compositionturingmachine.h turingmachine/compositionturingmachine.cpp turingmachine/conditionalturingmachine.cpp turingmachine/conditionalturingmachine.h turingmachine/multitapeturingmachine.h turingmachine/multitapeturingmachine.cpp turingmachine/turingmachinefactory.h turingmachine/turingmachinefactory.cpp)
+add_executable(turing_machine doctest.h turingmachine/turingmachine.h tests.cpp turingmachine/turingmachine.cpp turingmachine/iterationturingmachine.h turingmachine/iterationturingmachine.cpp turingmachine/compositionturingmachine.h turingmachine/compositionturingmachine.cpp turingmachine/conditionalturingmachine.cpp turingmachine/conditionalturingmachine.h turingmachine/multitapeturingmachine.h turingmachine/multitapeturingmachine.cpp turingmachine/turingmachinefactory.h turingmachine/turingmachinefactory.cpp tests.cpp)

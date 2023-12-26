@@ -33,9 +33,9 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     } else if (machineType == "COMPOSITION"){
         machine = new CompositionTuringMachine();
     } else if (machineType == "CONDITIONAL"){
-        // machine = new ConditionalTuringMachine();
+        machine = new ConditionalCompositionTuringMachine();
     } else if (machineType == "LOOP"){
-        // machine = new IterationLoopTuringMachine();
+        machine = new IterationLoopTuringMachine();
     } else if (machineType == "MULTITAPE"){
         // machine = new MultiTapeTuringMachine();
     }
