@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <iostream>
 
+/**
+* Writing the modified tape into a specified file from the user (if the machine halts)
+*/
 void TuringMachine::outputTape(const std::string &outputFileName){
     std::ofstream outFile(outputFileName, std::ios::out);
 
@@ -17,9 +20,12 @@ void TuringMachine::outputTape(const std::string &outputFileName){
 
 }
 
+/**
+* Running the Turing Machine on the given input (tape and machine data)
+*/
 void TuringMachine::run(const std::string &outputFileName) {
     while (true) {
-        if(currentState == "halt") break;
+        if(haltingStates.find(currentState) != haltingStates.end()) break;
 
         if (currentPosition <= 0) {
             std::cerr << "Machine reached invalid position on the tape";
@@ -33,7 +39,7 @@ void TuringMachine::run(const std::string &outputFileName) {
 
         auto it = transitions.find(key);
         if (it == transitions.end()) {
-            std::cerr << "Machine reached invalid state";
+            std::cerr << "Machine reached invalid state: " << currentSymbol << ",  " << currentState << std::endl;
             break;
         }
 
@@ -48,23 +54,25 @@ void TuringMachine::run(const std::string &outputFileName) {
     outputTape(outputFileName);
 }
 
-
-
-bool TuringMachine::isValidTape(const std::string& tape) {
-    for (char symbol : tape) {
-        if (alphabet.find(symbol) == alphabet.end()) {
-            return false;
-        }
-    }
-
-    //return std::all_of(tape, alphabet, alphabet.con); redo with this
-    return true;
+/**
+* Checking if the tape consists of characters from the alphabet only (the alphabet of the machine)
+*/
+bool TuringMachine::isValidTape(const std::string& inputTape) {
+    return std::all_of(inputTape.begin(), inputTape.end(), [this](char symbol) {
+        return alphabet.find(symbol) != alphabet.end();
+    });
 }
 
+/**
+* Checking if the given command is valid (left, right, stay)
+*/
 bool TuringMachine::isValidCommand(const char command) {
     return command == 'L' || command == 'R' || command == 'S';
 }
 
+/**
+* Parsing the given transition, modifies the given variables to that they be reused, returns true if parsed correctly
+*/
 bool TuringMachine::parseTransition(const std::string& line, char& currentSymbol, std::string& currentTransitionState, char& newSymbol, std::string& newState, char& command) {
     std::istringstream stream(line);
     char arrow, tempBracket;
@@ -85,90 +93,125 @@ bool TuringMachine::parseTransition(const std::string& line, char& currentSymbol
     return false;
 }
 
-void TuringMachine::initMultiTape(const std::string &fileName) {}
-
-void TuringMachine::initIterationLoop(const std::string &fileName) {}
-
-void TuringMachine::initConditionalComposition(const std::string &fileName) {}
-
-void TuringMachine::initComposition(const std::string &fileName) {}
-
-void TuringMachine::initRegular(const std::string &fileName) {
-    std::ifstream file(fileName);
-    std::string line;
-    // Skip the first line that specifies the type of the machine
-    std::getline(file, line);
+/**
+* Iterating over each row until a non-transition one occurs
+*/
+void TuringMachine::processTransitions(std::ifstream& file, std::string& line) {
     currentPosition = 1;
     alphabet.insert('>');
+    haltingStates.insert("halt");
     bool firstTransition = true;
     while (std::getline(file, line) && !line.empty()) {
         char currentSymbol;
         std::string currentTransitionState, newState;
         char newSymbol, command;
+        //! checking if the given row is a valid transition
         if (parseTransition(line, currentSymbol, currentTransitionState, newSymbol, newState, command)) {
             TransitionKey key{currentSymbol, currentTransitionState};
             TransitionValue value{newSymbol, newState, command};
+            //! adding the transition
             transitions[key] = value;
+            //! adding the states
             states.insert(currentTransitionState);
             states.insert(newState);
+            //! adding the alphabet symbols
             alphabet.insert(currentSymbol);
             alphabet.insert(newSymbol);
-            if(firstTransition) {
-                currentState = currentTransitionState; firstTransition = false;
+            //! assuming the first given state (in the first transition) is the starting one, sets the currentState (the initial one)
+            if (firstTransition) {
+                currentState = currentTransitionState;
+                firstTransition = false;
             }
         } else {
-            tape = line;
-            if (!isValidTape(tape)) {
-                std::cerr << "Invalid tape: contains symbols not in the alphabet" << std::endl;
-            }
+            //! No more transitions, break the loop
             break;
         }
     }
-
-    std::string initialTape;
-    if (std::getline(file, initialTape)) {
-        tape = initialTape;
-    }
-
-    file.close();
 }
 
-void TuringMachine::init(const std::string& fileName){
-    std::ifstream tmData(fileName);
-    std::string machineType;
-    std::getline(tmData, machineType);
+/**
+* Processing the tape input
+*/
+void TuringMachine::processTape(const std::string& tapeData) {
+    tape = tapeData;
+    if (!isValidTape(tape)) {
+        std::cerr << "Invalid tape: contains symbols not in the alphabet" << std::endl;
+    }
+}
 
-    if (!tmData.is_open()) {
+/**
+* Initializes the machine, parsing the transitions and validating the tape
+*/
+void TuringMachine::init(const std::string &fileName) {
+    std::ifstream file(fileName);
+    if (!file.is_open()) {
         std::cerr << "Unable to open file: " << fileName << std::endl;
         return;
     }
 
+    // Skip the first line that specifies the type of the machine
+    std::string line;
+    std::getline(file, line);
 
-    if(machineType == "REGULAR"){
-        initRegular(fileName);
-    } else if (machineType == "COMPOSITION"){
-        initComposition(fileName);
-    } else if (machineType == "CONDITIONAL"){
-        initConditionalComposition(fileName);
-    } else if (machineType == "LOOP"){
-        initIterationLoop(fileName);
-    } else if (machineType == "MULTITAPE"){
-        initMultiTape(fileName);
+    // Process transitions
+    processTransitions(file, line);
+
+    // Process the initial tape
+    if(isValidTape(line)){
+        processTape(line);
     }
 
-    tmData.close();
 
+    file.close();
 }
 
+/**
+* Constructor of a Turing Machine by a given input file, calls the initializing method
+*/
 TuringMachine::TuringMachine(const std::string& fileName) {
     init(fileName);
 }
 
+/**
+* Empty constructor for the Factory class
+*/
+TuringMachine::TuringMachine() {
+}
 
+/**
+* Returns the current tape
+*/
+std::string TuringMachine::getTape() {
+    return this->tape;
+}
+
+/**
+* Modifies the current tape
+*/
+void TuringMachine::setTape(const std::string& tape){
+    this->tape = tape;
+}
+
+/**
+* Returns the read head
+*/
+int TuringMachine::getCurrentPosition() {
+    return this->currentPosition;
+}
+
+/**
+* Changes the position of the read head
+*/
+void TuringMachine::setCurrentPosition(int position) {
+    this->currentPosition = position;
+}
+
+/**
+* Custom hashing function for the transition map
+*/
 std::size_t TuringMachine::TransitionKeyHash::operator()(const TransitionKey& key) const {
     return std::hash<std::string>()(key.currentState) ^ std::hash<char>()(key.currentSymbol);
 }
-
 
 bool TuringMachine::TransitionKey::operator==(const TransitionKey& other) const {
     return currentSymbol == other.currentSymbol && currentState == other.currentState;

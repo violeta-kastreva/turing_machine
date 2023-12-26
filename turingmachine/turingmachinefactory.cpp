@@ -7,31 +7,43 @@
 #include "iterationturingmachine.h"
 #include "multitapeturingmachine.h"
 
+/**
+* Default constructor
+*/
 TuringMachineFactory::TuringMachineFactory() = default;
 
+/**
+* Opens the input files, and based on the first line of the input, returns the needed machine type
+*/
 TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     std::ifstream tmData(fileName);
-    std::string machineType;
-    std::getline(tmData, machineType);
-
     if (!tmData.is_open()) {
         std::cerr << "Unable to open file: " << fileName << std::endl;
         return nullptr;
     }
 
+    std::string machineType;
+    std::getline(tmData, machineType);
+    tmData.close();
+
+    TuringMachine* machine = nullptr;
 
     if(machineType == "REGULAR"){
-        return new TuringMachine(fileName);
+        machine = new TuringMachine();
     } else if (machineType == "COMPOSITION"){
-       // return new CompositionTuringMachine(fileName);
+        machine = new CompositionTuringMachine();
     } else if (machineType == "CONDITIONAL"){
-       // return new ConditionalTuringMachine(fileName);
+        // machine = new ConditionalTuringMachine();
     } else if (machineType == "LOOP"){
-       // return new IterationLoopTuringMachine(fileName);
+        // machine = new IterationLoopTuringMachine();
     } else if (machineType == "MULTITAPE"){
-       // return new MultiTapeTuringMachine(fileName);
+        // machine = new MultiTapeTuringMachine();
     }
 
-    tmData.close();
-    return nullptr;
+    // Call init method after object creation to properly initialize it
+    if (machine != nullptr) {
+        machine->init(fileName);
+    }
+
+    return machine;
 }

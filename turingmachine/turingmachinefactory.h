@@ -5,10 +5,13 @@
 #include <string>
 #include "turingmachine.h"
 
+/**
+* Factory class for Turing Machines, returns the needed machine based on the input
+*/
 class TuringMachineFactory {
 public:
     TuringMachineFactory();
-    TuringMachine* getMachine(const std::string& fileName);
+    TuringMachine * getMachine(const std::string& fileName);
 private:
 };
 

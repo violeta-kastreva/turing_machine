@@ -1,4 +1,4 @@
 REGULAR
-0{start} -> 1{start}R
-1{start} -> 0{halt}S
+0{start}->1{start}R
+1{start}->0{halt}S
 >01
