@@ -2,6 +2,7 @@
 #define TURING_MACHINE_COMPOSITIONTURINGMACHINE_H
 
 #include <memory>
+#include "regularturingmachine.h"
 #include "turingmachine.h"
 
 /**
@@ -16,10 +17,9 @@ public:
 
 private:
     //! first machine to be executed
-    std::unique_ptr<TuringMachine> machine1;
+    std::unique_ptr<RegularTuringMachine> machine1;
     //! second machine to be executed
-    std::unique_ptr<TuringMachine> machine2;
-
+    std::unique_ptr<RegularTuringMachine> machine2;
     std::string createTempFile(const std::vector<std::string>& inputLines, int index);
 };
 

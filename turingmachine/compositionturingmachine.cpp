@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <filesystem>
+#include "turingmachine.h"
 
 
 /**
@@ -67,8 +68,8 @@ void CompositionTuringMachine::init(const std::string &fileName) {
     std::string machine2FilePath = createTempFile(machine2Input, 1);
 
     //! Initializes Turing Machines with temporary file paths
-    machine1 = std::make_unique<TuringMachine>(machine1FilePath);
-    machine2 = std::make_unique<TuringMachine>(machine2FilePath);
+    machine1 = std::make_unique<RegularTuringMachine>(machine1FilePath);
+    machine2 = std::make_unique<RegularTuringMachine>(machine2FilePath);
     //machine1->setTape(machine2->getTape());
 
     //! Deleting temporary files

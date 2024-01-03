@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "turingmachinefactory.h"
-#include "turingmachine.h"
+#include "regularturingmachine.h"
 #include "compositionturingmachine.h"
 #include "conditionalturingmachine.h"
 #include "iterationturingmachine.h"
@@ -26,10 +26,10 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     std::getline(tmData, machineType);
     tmData.close();
 
-    TuringMachine* machine = nullptr;
+    TuringMachine* machine = new RegularTuringMachine();
 
     if(machineType == "REGULAR"){
-        machine = new TuringMachine();
+        machine = new RegularTuringMachine();
     } else if (machineType == "COMPOSITION"){
         machine = new CompositionTuringMachine();
     } else if (machineType == "CONDITIONAL"){

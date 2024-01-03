@@ -1,18 +1,18 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "turingmachine/turingmachine.h"
+#include "turingmachine/regularturingmachine.h"
 #include "turingmachine/turingmachinefactory.h"
 #include "turingmachine/compositionturingmachine.h"
 #include "turingmachine/conditionalturingmachine.h"
 #include "turingmachine/iterationturingmachine.h"
 
 TEST_CASE("Testing Basic Turing Machine") {
-    TuringMachine tm("../testFiles/basic_regular.txt");
+    RegularTuringMachine tm("../testFiles/basic_regular.txt");
     tm.run("../testFiles/basic_regular_output.txt");
 }
 
 TEST_CASE("Testing Regular Turing Machine") {
-    TuringMachine tm("../testFiles/regular.txt");
+    RegularTuringMachine tm("../testFiles/regular.txt");
     tm.run("../testFiles/regular_output.txt");
 }
 

@@ -79,9 +79,9 @@ void ConditionalCompositionTuringMachine::init(const std::string &fileName) {
     std::string machine3FilePath = createTempFile(machine3Input, 2);
 
     //! Initializes Turing Machines with temporary file paths
-    machine1 = std::make_unique<TuringMachine>(machine1FilePath);
-    machine2 = std::make_unique<TuringMachine>(machine2FilePath);
-    machine3 = std::make_unique<TuringMachine>(machine3FilePath);
+    machine1 = std::make_unique<RegularTuringMachine>(machine1FilePath);
+    machine2 = std::make_unique<RegularTuringMachine>(machine2FilePath);
+    machine3 = std::make_unique<RegularTuringMachine>(machine3FilePath);
     machine1->setTape(machine3->getTape());
 
     //! Deleting temporary files

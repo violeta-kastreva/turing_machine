@@ -1,5 +1,6 @@
 #include <filesystem>
 #include "iterationturingmachine.h"
+#include "turingmachine.h"
 
 
 /**
@@ -59,8 +60,8 @@ void IterationLoopTuringMachine::init(const std::string &fileName) {
     std::string loopMachineFilePath = createTempFile(loopMachineInput, 0);
     std::string postLoopMachineFilePath = createTempFile(postLoopMachineInput, 1);
 
-    loopMachine = std::make_unique<TuringMachine>(loopMachineFilePath);
-    postLoopMachine = std::make_unique<TuringMachine>(postLoopMachineFilePath);
+    loopMachine = std::make_unique<RegularTuringMachine>(loopMachineFilePath);
+    postLoopMachine = std::make_unique<RegularTuringMachine>(postLoopMachineFilePath);
     loopMachine->setTape(postLoopMachine->getTape());
 
     remove(loopMachineFilePath.c_str());
