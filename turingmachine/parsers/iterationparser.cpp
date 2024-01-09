@@ -1,4 +1,10 @@
-
+/**
+ * @file IterationLoopMachineParser.cpp
+ * @brief Implementation of the IterationLoopMachineParser class.
+ *
+ * This file contains the implementation of the IterationLoopMachineParser class, including the logic
+ * for parsing the configuration of Iteration Loop Turing Machines.
+ */
 #include <limits>
 #include "iterationparser.h"
 #include "regularparser.h"
