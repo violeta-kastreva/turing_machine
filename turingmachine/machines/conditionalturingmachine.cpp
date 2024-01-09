@@ -1,3 +1,10 @@
+/**
+ * @file ConditionalCompositionTuringMachine.cpp
+ * @brief Implementation of the ConditionalCompositionTuringMachine class.
+ *
+ * This file contains the implementation of the ConditionalCompositionTuringMachine class, including methods to initialize
+ * and run the conditional sequence of machines.
+ */
 #include <memory>
 #include <iostream>
 #include <fstream>
@@ -6,9 +13,6 @@
 #include "../parsers/conditionalparser.h"
 
 
-/**
-* Method for creating a temporary file, used to create input files for the three turing machines
-*/
 
 void ConditionalCompositionTuringMachine::init(std::istream& inputStream) {
     ConditionalCompositionMachineParser parser(inputStream);

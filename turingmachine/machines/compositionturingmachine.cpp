@@ -1,3 +1,11 @@
+/**
+ * @file CompositionTuringMachine.cpp
+ * @brief Implementation of the CompositionTuringMachine class.
+ *
+ * This file contains the implementation of the CompositionTuringMachine class, including methods to initialize
+ * and run the composed machines.
+ */
+
 #include "compositionturingmachine.h"
 #include <fstream>
 #include <sstream>

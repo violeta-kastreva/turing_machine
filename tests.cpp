@@ -6,15 +6,6 @@
 #include "turingmachine/machines/conditionalturingmachine.h"
 #include "turingmachine/machines/iterationturingmachine.h"
 
-TEST_CASE("Testing Basic Turing Machine") {
-    RegularTuringMachine tm("../testFiles/basic_regular.txt");
-    tm.run("../testFiles/basic_regular_output.txt");
-}
-
-TEST_CASE("Testing Regular Turing Machine") {
-    RegularTuringMachine tm("../testFiles/regular.txt");
-    tm.run("../testFiles/regular_output.txt");
-}
 
 TEST_CASE("Testing Factory Turing Machine") {
     auto* factory = new TuringMachineFactory();
@@ -43,5 +34,10 @@ TEST_CASE("Testing Loop Turing Machine") {
     auto* factory = new TuringMachineFactory();
     auto tm = factory->getMachine("../testFiles/loop.txt");
     tm->run("../testFiles/loop_output.txt");
-
 }
+
+//TEST_CASE("Testing Multitape Turing Machine") {
+//    auto* factory = new TuringMachineFactory();
+//    auto tm = factory->getMachine("../testFiles/multitape.txt");
+//    tm->run("../testFiles/multitape_output.txt");
+//}

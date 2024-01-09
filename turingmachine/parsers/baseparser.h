@@ -10,6 +10,7 @@
 #include <set>
 #include <string>
 #include "../machines/regularturingmachine.h"
+
 class BaseParser {
 public:
     explicit BaseParser(std::istream& input) : inputStream(input){}

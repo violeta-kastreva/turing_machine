@@ -1,3 +1,10 @@
+/**
+ * @file ConditionalCompositionMachineParser.cpp
+ * @brief Implementation of the ConditionalCompositionMachineParser class.
+ *
+ * This file contains the implementation of the ConditionalCompositionMachineParser class, including methods to parse
+ * the configuration for Conditional Composition Turing Machines.
+ */
 #include <memory>
 #include <limits>
 #include "ConditionalParser.h"

@@ -10,22 +10,25 @@
 
 /**
  * @class RegularTuringMachine
- * @brief Represents a standard Turing machine with a doubly linked list as the tape.
+ * @brief Represents a standard Turing machine using a doubly linked list as the tape.
  *
- * This class extends the TuringMachine class, implementing the functionality for a regular Turing machine.
- * It uses a doubly linked list to represent the tape, allowing for efficient operations at both ends.
+ * Inherits from TuringMachine and implements the functionality for a regular Turing machine.
+ * Utilizes a doubly linked list to represent the tape, enabling efficient operations.
  */
 class RegularTuringMachine : public TuringMachine {
 public:
+    // Constructors
     RegularTuringMachine();
     RegularTuringMachine(const std::string& fileName);
 
+    // Overridden methods from TuringMachine
     virtual void init(std::istream& inputStream) override;
     virtual void run(const std::string& outputFileName) override;
+
+    // Additional public methods
     std::string getTape();
     void setTape(const std::string& tape);
     void setCurrentState(const std::string& state);
-
 
     struct TransitionKey {
         char currentSymbol;
@@ -56,9 +59,8 @@ public:
     void setStates(const std::set<std::string> &states);
 
     void setAlphabet(const std::set<char> &alphabet);
-
 private:
-
+    // Private member variables
     std::set<std::string> states;
     std::set<std::string> haltingStates;
     std::unordered_map<TransitionKey, TransitionValue, TransitionKeyHash> transitions;
@@ -68,13 +70,15 @@ private:
     DoublyLinkedList<char> tape;
     typename DoublyLinkedList<char>::Iterator currentPosition;
 
+    // Private methods including error checks and utility functions
     void outputTape(const std::string& outFile);
     bool isValidTape(const std::string& tape);
     static bool isValidCommand(const char command);
     void processTape(const std::string& tapeData);
 
+    // Additional private methods
     void setInitialTapePosition(int position);
-
 };
+
 
 #endif // TURING_MACHINE_REGULARTURINGMACHINE_H

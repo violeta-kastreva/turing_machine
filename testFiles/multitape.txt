@@ -1,0 +1,10 @@
+MULTITAPE
+010{a,b,c}->011{a,b, b}RRR
+210{a,b,b}->011{a,b,d}RRR
+310{a,b,b}->011{a,b,d}RRR
+410{a,b,b}->011{a,b,d}RRR
+1
+a,b,d
+>0000
+>1111
+>0000

@@ -7,7 +7,14 @@
 #include<string>
 #include<iostream>
 #include<vector>
-
+/**
+ * @struct LinkedNode
+ * @brief Node structure for DoublyLinkedList.
+ *
+ * Represents a node in a doubly linked list, storing a value and pointers to the next and previous nodes.
+ *
+ * @tparam T Type of the value stored in the node.
+ */
 template<typename T>
 struct LinkedNode{
     T value;
@@ -18,6 +25,14 @@ struct LinkedNode{
             value(_value), next(_next), prev(_prev){}
 };
 
+/**
+ * @class DoublyLinkedList
+ * @brief Templated doubly linked list class.
+ *
+ * Implements a doubly linked list providing various operations like insertion, deletion, and iteration.
+ *
+ * @tparam T Type of the elements in the list.
+ */
 template<typename T>
 class DoublyLinkedList{
 private:
@@ -123,13 +138,26 @@ public:
         return Iterator(head);
     }
 
+    inline Iterator begin() const{
+        return Iterator(head);
+    }
+
     inline Iterator end(){
+        return Iterator();
+    }
+
+    inline Iterator end() const{
         return Iterator();
     }
 
     inline Iterator last(){
         return Iterator(tail);
     }
+
+    inline Iterator last() const{
+        return Iterator(tail);
+    }
+
 
     //O(1)
     void push_after(Iterator, const T&);

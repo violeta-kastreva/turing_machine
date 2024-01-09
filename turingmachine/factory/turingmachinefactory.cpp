@@ -8,13 +8,16 @@
 #include "../machines/multitapeturingmachine.h"
 
 /**
-* Default constructor
-*/
+ * @brief Default constructor for TuringMachineFactory.
+ */
 TuringMachineFactory::TuringMachineFactory() = default;
 
 /**
-* Opens the input files, and based on the first line of the input, returns the needed machine type
-*/
+ * @brief Creates and returns a Turing machine instance based on the input file.
+ * @param fileName The name of the file containing the Turing machine specifications.
+ * @return A pointer to the created Turing machine instance.
+ * @exception std::runtime_error Thrown if the file cannot be opened or the machine type is unknown.
+ */
 TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     std::ifstream tmData(fileName);
     if (!tmData.is_open()) {
@@ -37,8 +40,11 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     } else if (machineType == "LOOP"){
         machine = new IterationLoopTuringMachine();
     } else if (machineType == "MULTITAPE"){
-        // machine = new MultiTapeTuringMachine();
+        machine = new MultiTapeTuringMachine();
+    } else {
+        throw std::runtime_error("Unknown machine type: " + machineType);
     }
+
 
     // Call init method after object creation to properly initialize it
     if (machine != nullptr) {
