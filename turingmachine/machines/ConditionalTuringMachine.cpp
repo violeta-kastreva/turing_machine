@@ -9,8 +9,8 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include "conditionalturingmachine.h"
-#include "../parsers/conditionalparser.h"
+#include "ConditionalTuringMachine.h"
+#include "../parsers/ConditionalParser.h"
 
 
 

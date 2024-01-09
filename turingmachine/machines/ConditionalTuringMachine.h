@@ -9,8 +9,8 @@
 #ifndef TURING_MACHINE_CONDITIONALTURINGMACHINE_H
 #define TURING_MACHINE_CONDITIONALTURINGMACHINE_H
 
-#include "regularturingmachine.h"
-#include "turingmachine.h"
+#include "RegularTuringMachine.h"
+#include "TuringMachine.h"
 
 /**
  * @class ConditionalCompositionTuringMachine

@@ -8,9 +8,9 @@
 #include <memory>
 #include <limits>
 #include "ConditionalParser.h"
-#include "../machines/regularturingmachine.h"
-#include "conditionalparser.h"
-#include "regularparser.h"
+#include "../machines/RegularTuringMachine.h"
+#include "ConditionalParser.h"
+#include "RegularParser.h"
 
 void ConditionalCompositionMachineParser::parse() {
     RegularMachineParser machine1Parser(inputStream);

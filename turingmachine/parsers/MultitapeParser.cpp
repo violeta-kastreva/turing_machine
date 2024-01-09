@@ -1,6 +1,6 @@
 #include <limits>
 #include <sstream>
-#include "multitapeparser.h"
+#include "MultitapeParser.h"
 #include <sstream>
 #include <string>
 #include <vector>

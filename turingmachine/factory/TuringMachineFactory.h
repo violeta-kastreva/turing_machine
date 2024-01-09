@@ -3,7 +3,7 @@
 #define TURING_MACHINE_TURINGMACHINEFACTORY_H
 
 #include <string>
-#include "../machines/regularturingmachine.h"
+#include "../machines/RegularTuringMachine.h"
 /**
  * @class TuringMachineFactory
  * @brief Factory for creating Turing Machine instances.

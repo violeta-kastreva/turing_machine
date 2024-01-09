@@ -6,13 +6,13 @@
  * and run the composed machines.
  */
 
-#include "compositionturingmachine.h"
+#include "CompositionTuringMachine.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <filesystem>
-#include "turingmachine.h"
-#include "../parsers/compositionparser.h"
+#include "TuringMachine.h"
+#include "../parsers/CompositionParser.h"
 
 #include "CompositionTuringMachine.h"
 #include <fstream>

@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <set>
 #include <string>
-#include "../machines/regularturingmachine.h"
+#include "../machines/RegularTuringMachine.h"
 
 class BaseParser {
 public:

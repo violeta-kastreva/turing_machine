@@ -1,5 +1,5 @@
-#include "multitapeturingmachine.h"
-#include "../parsers/multitapeparser.h"
+#include "MultitapeTuringMachine.h"
+#include "../parsers/MultitapeParser.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>

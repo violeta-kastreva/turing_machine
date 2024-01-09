@@ -1,7 +1,7 @@
-#include "baseparser.h"
+#include "BaseParser.h"
 
-#include "compositionparser.h"
-#include "regularparser.h"
+#include "CompositionParser.h"
+#include "RegularParser.h"
 
 void CompositionMachineParser::parse() {
     RegularMachineParser machine1Parser(inputStream);

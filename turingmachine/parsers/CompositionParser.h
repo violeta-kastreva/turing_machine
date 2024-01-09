@@ -11,8 +11,8 @@
 #define TURING_MACHINE_COMPOSITIONPARSER_H
 
 #include <memory>
-#include "baseparser.h"
-#include "../machines/compositionturingmachine.h"
+#include "BaseParser.h"
+#include "../machines/CompositionTuringMachine.h"
 
 
 /**

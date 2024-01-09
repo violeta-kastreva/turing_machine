@@ -1,5 +1,5 @@
-#include "regularturingmachine.h"
-#include "../parsers/regularparser.h"
+#include "RegularTuringMachine.h"
+#include "../parsers/RegularParser.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>

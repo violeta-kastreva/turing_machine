@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
-#include "turingmachinefactory.h"
-#include "../machines/regularturingmachine.h"
-#include "../machines/compositionturingmachine.h"
-#include "../machines/conditionalturingmachine.h"
-#include "../machines/iterationturingmachine.h"
-#include "../machines/multitapeturingmachine.h"
+#include "TuringMachineFactory.h"
+#include "../machines/RegularTuringMachine.h"
+#include "../machines/CompositionTuringMachine.h"
+#include "../machines/ConditionalTuringMachine.h"
+#include "../machines/IterationTuringMachine.h"
+#include "../machines/MultitapeTuringMachine.h"
 
 /**
  * @brief Default constructor for TuringMachineFactory.

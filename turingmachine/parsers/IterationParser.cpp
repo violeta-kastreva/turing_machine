@@ -6,8 +6,8 @@
  * for parsing the configuration of Iteration Loop Turing Machines.
  */
 #include <limits>
-#include "iterationparser.h"
-#include "regularparser.h"
+#include "IterationParser.h"
+#include "RegularParser.h"
 
 void IterationLoopMachineParser::parse() {
     RegularMachineParser loopMachineParser(inputStream);

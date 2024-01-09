@@ -2,8 +2,8 @@
 #define TURING_MACHINE_ITERATIONTURINGMACHINE_H
 
 
-#include "regularturingmachine.h"
-#include "turingmachine.h"
+#include "RegularTuringMachine.h"
+#include "TuringMachine.h"
 #include <memory>
 #include <fstream>
 #include <iostream>

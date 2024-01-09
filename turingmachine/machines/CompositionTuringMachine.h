@@ -11,8 +11,8 @@
 #define TURING_MACHINE_COMPOSITIONTURINGMACHINE_H
 
 #include <memory>
-#include "regularturingmachine.h"
-#include "turingmachine.h"
+#include "RegularTuringMachine.h"
+#include "TuringMachine.h"
 
 
 /**

@@ -12,7 +12,7 @@
 #include "BaseParser.h"
 #include <istream>
 #include <memory>
-#include "../machines/regularturingmachine.h"
+#include "../machines/RegularTuringMachine.h"
 
 /**
  * @class RegularMachineParser

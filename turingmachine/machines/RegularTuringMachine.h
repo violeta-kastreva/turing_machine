@@ -5,8 +5,8 @@
 #include <unordered_map>
 #include <string>
 #include <set>
-#include "turingmachine.h"
-#include "../tape/doublylinkedlist.hpp"
+#include "TuringMachine.h"
+#include "../tape/DoublyLinkedList.hpp"
 
 /**
  * @class RegularTuringMachine

@@ -1,7 +1,7 @@
 #include <filesystem>
-#include "iterationturingmachine.h"
-#include "turingmachine.h"
-#include "../parsers/iterationparser.h"
+#include "IterationTuringMachine.h"
+#include "TuringMachine.h"
+#include "../parsers/IterationParser.h"
 
 IterationLoopTuringMachine::IterationLoopTuringMachine(std::istream& inputStream) {
     init(inputStream);

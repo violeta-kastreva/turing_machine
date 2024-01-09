@@ -1,7 +1,7 @@
 
 
-#include "../machines/regularturingmachine.h"
-#include "regularparser.h"
+#include "../machines/RegularTuringMachine.h"
+#include "RegularParser.h"
 
 
 std::unique_ptr<RegularTuringMachine> RegularMachineParser::parse() {
