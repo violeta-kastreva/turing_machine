@@ -8,8 +8,8 @@
 class ConditionalCompositionTuringMachine : public TuringMachine {
 public:
     ConditionalCompositionTuringMachine();
-    ConditionalCompositionTuringMachine(const std::string& fileName);
-    void init(const std::string& fileName);
+    ConditionalCompositionTuringMachine(std::istream& inputStream);
+    void init(std::istream& inputStream) override;
     void run(const std::string &outputFileName);
 
 private:
@@ -18,6 +18,8 @@ private:
     std::unique_ptr<RegularTuringMachine> machine3;
 
     std::string createTempFile(const std::vector<std::string>& inputLines, int index);
+    std::set<char> conditionalSymbols;
+
 };
 
 #endif //TURING_MACHINE_CONDITIONALTURINGMACHINE_H

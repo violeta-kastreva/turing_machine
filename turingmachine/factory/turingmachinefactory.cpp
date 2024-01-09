@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include "turingmachinefactory.h"
-#include "regularturingmachine.h"
-#include "compositionturingmachine.h"
-#include "conditionalturingmachine.h"
-#include "iterationturingmachine.h"
-#include "multitapeturingmachine.h"
+#include "../machines/regularturingmachine.h"
+#include "../machines/compositionturingmachine.h"
+#include "../machines/conditionalturingmachine.h"
+#include "../machines/iterationturingmachine.h"
+#include "../machines/multitapeturingmachine.h"
 
 /**
 * Default constructor
@@ -24,7 +24,7 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
 
     std::string machineType;
     std::getline(tmData, machineType);
-    tmData.close();
+
 
     TuringMachine* machine = new RegularTuringMachine();
 
@@ -42,7 +42,7 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
 
     // Call init method after object creation to properly initialize it
     if (machine != nullptr) {
-        machine->init(fileName);
+        machine->init(tmData);
     }
 
     return machine;

@@ -7,4 +7,8 @@ REGULAR
 1{q}->1{s}R
  {q}-> {s}R
 >{q}->>{s}R
+1
+halt
 >0110
+
+

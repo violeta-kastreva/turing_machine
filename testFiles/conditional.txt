@@ -1,13 +1,22 @@
 CONDITIONAL
 0{s}->1{q}R
 1{s}->0{q}R
+1{q}-> {s}S
  {s}-> {halt}S
+1
+halt
 SECOND MACHINE STATES
 0{q}->0{q}R
 1{q}->1{q}R
  {q}-> {halt}S
+1
+halt
 THIRD MACHINE STATES
 0{q}->1{r}L
 1{q}->0{r}L
  {q}-> {halt}S
+1
+halt
+1
+
 >0110

@@ -2,9 +2,13 @@ COMPOSITION
 0{s}->1{s}R
 1{s}->0{s}R
  {s}-> {halt}S
+1
+halt
 SECOND MACHINE STATES
 >{q}->>{q}R
 0{q}->0{q}R
 1{q}->1{q}R
  {q}-> {halt}L
+1
+halt
 >0110

@@ -11,9 +11,11 @@
 class CompositionTuringMachine : public TuringMachine{
 public:
     CompositionTuringMachine();
-    CompositionTuringMachine(const std::string &fileName);
-    void init(const std::string& fileName);
+    CompositionTuringMachine(std::istream& inputStream);
+    void init(std::istream& inputStream) override;
     void run(const std::string &outputFileName);
+    void setMachines(std::unique_ptr<RegularTuringMachine> m1, std::unique_ptr<RegularTuringMachine> m2);
+    void setTape(const std::string& tape);
 
 private:
     //! first machine to be executed

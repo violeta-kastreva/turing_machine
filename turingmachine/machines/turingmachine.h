@@ -10,7 +10,7 @@
 class TuringMachine {
 
 public:
-    virtual void init(const std::string& fileName) = 0;
+    virtual void init(std::istream& inputStream) = 0;
 
     virtual void run(const std::string& outputFileName) = 0;
 };

@@ -3,7 +3,7 @@
 #define TURING_MACHINE_TURINGMACHINEFACTORY_H
 
 #include <string>
-#include "regularturingmachine.h"
+#include "../machines/regularturingmachine.h"
 
 /**
 * Factory class for Turing Machines, returns the needed machine based on the input
