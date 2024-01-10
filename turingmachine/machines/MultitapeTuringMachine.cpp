@@ -1,3 +1,11 @@
+/**
+ * @file MultiTapeMachineParser.cpp
+ * @brief Parser class for Multi-Tape Turing Machines (Under Implementation).
+ *
+ * This file contains the definition of the MultiTapeMachineParser class. It is intended
+ * to parse configurations for Multi-Tape Turing Machines. The implementation of this class
+ * is still in progress and should not be used or looked at until it is complete.
+ */
 #include "MultitapeTuringMachine.h"
 #include "../parsers/MultitapeParser.h"
 #include <fstream>

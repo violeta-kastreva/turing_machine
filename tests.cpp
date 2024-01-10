@@ -1,10 +1,10 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
+#include <fstream>
+#include <cstdlib>
+#include <exception>
 #include "turingmachine/machines/RegularTuringMachine.h"
 #include "turingmachine/factory/TuringMachineFactory.h"
-#include "turingmachine/machines/CompositionTuringMachine.h"
-#include "turingmachine/machines/ConditionalTuringMachine.h"
-#include "turingmachine/machines/IterationTuringMachine.h"
 #include "turingmachine/tapevisualizer/TapeVisualizer.h"
 
 std::string readFirstLine(const std::string& filename) {
@@ -43,6 +43,14 @@ TEST_CASE("Testing Conditional Composition Turing Machine") {
     REQUIRE(readFirstLine("../testFiles/conditional_output.txt") == expectedOutput);
 }
 
+TEST_CASE("Testing Loop Turing Machine") {
+    auto* factory = new TuringMachineFactory();
+    auto tm = factory->getMachine("../testFiles/loop.txt");
+    tm->run("../testFiles/loop_output.txt");
+
+    std::string expectedOutput = ">01010 ";
+    REQUIRE(readFirstLine("../testFiles/loop_output.txt") == expectedOutput);
+}
 
 //TEST_CASE("Testing Multitape Turing Machine") {
 //    auto* factory = new TuringMachineFactory();
@@ -82,5 +90,40 @@ TEST_CASE("Testing Tape Visualization") {
     std::string content;
     outputFile >> content;
     CHECK_FALSE(content.empty());
+    outputFile.close();
+}
+
+
+
+TEST_CASE("Testing Tape Visualization with Graphviz") {
+    std::string tapeFilePath = "../testFiles/tape.txt";
+    std::string outputGraphvizFilePath = "../testFiles/tape_graphviz.dot";
+    std::string outputPngFilePath = "../testFiles/tape_graphviz.png";
+
+    // Create a dummy tape file for testing
+    std::ofstream tapeFile(tapeFilePath);
+    tapeFile << ">1001 "; // Sample tape content
+    tapeFile.close();
+
+    // Create an instance of TapeVisualizer and generate DOT file
+    TapeVisualizer visualizer(tapeFilePath);
+    bool exceptionThrown = false;
+    try {
+        visualizer.generateGraphvizFile(outputGraphvizFilePath);
+    } catch (const std::exception& e) {
+        exceptionThrown = true;
+    }
+    CHECK_FALSE(exceptionThrown);
+
+    // Use the Graphviz dot tool to generate a PNG file from the DOT file
+    std::string graphvizCommand = "dot -Tpng " + outputGraphvizFilePath + " -o " + outputPngFilePath;
+    int result = std::system(graphvizCommand.c_str());
+
+    // Check if the Graphviz command executed successfully
+    CHECK(result == 0);
+
+    // Optionally, check if the PNG file exists
+    std::ifstream outputFile(outputPngFilePath);
+    CHECK(outputFile.good());
     outputFile.close();
 }

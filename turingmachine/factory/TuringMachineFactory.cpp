@@ -41,12 +41,10 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
         machine = new IterationLoopTuringMachine();
     } else if (machineType == "MULTITAPE"){
         machine = new MultiTapeTuringMachine();
-    } else {
-        throw std::runtime_error("Unknown machine type: " + machineType);
     }
 
 
-    // Call init method after object creation to properly initialize it
+    ///< Call init method after object creation to properly initialize it
     if (machine != nullptr) {
         machine->init(tmData);
     }

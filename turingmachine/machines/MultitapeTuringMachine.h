@@ -1,3 +1,11 @@
+/**
+ * @file MultiTapeMachineParser.h
+ * @brief Parser class for Multi-Tape Turing Machines (Under Implementation).
+ *
+ * This file contains the definition of the MultiTapeMachineParser class. It is intended
+ * to parse configurations for Multi-Tape Turing Machines. The implementation of this class
+ * is still in progress and should not be used or looked at until it is complete.
+ */
 #pragma once
 #ifndef TURING_MACHINE_MULTITAPETURINGMACHINE_H
 #define TURING_MACHINE_MULTITAPETURINGMACHINE_H
@@ -12,6 +20,15 @@
 #include <unordered_map>
 #include <set>
 
+
+/**
+ * @class MultiTapeMachineParser
+ * @brief Parser for Multi-Tape Turing Machines (Under Implementation).
+ *
+ * Inherits from BaseParser and provides functionality to parse the configuration for
+ * Multi-Tape Turing Machines. This class is currently under implementation and should not be
+ * used until the implementation is complete.
+ */
 class MultiTapeTuringMachine : public TuringMachine {
 public:
     MultiTapeTuringMachine();

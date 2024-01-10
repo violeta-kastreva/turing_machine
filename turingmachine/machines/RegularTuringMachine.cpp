@@ -1,14 +1,15 @@
-#include "RegularTuringMachine.h"
-#include "../parsers/RegularParser.h"
-#include <fstream>
-#include <iostream>
-#include <algorithm>
 /**
  * @file RegularTuringMachine.cpp
  * @brief Implementation of RegularTuringMachine class.
  *
  * This file contains the implementation of the RegularTuringMachine class
  */
+#include "RegularTuringMachine.h"
+#include "../parsers/RegularParser.h"
+#include <fstream>
+#include <iostream>
+#include <algorithm>
+
 
 /**
  * @brief Default constructor for RegularTuringMachine.
