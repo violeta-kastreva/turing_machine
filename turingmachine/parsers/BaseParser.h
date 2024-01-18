@@ -1,10 +1,3 @@
-/**
- * @file BaseParser.h
- * @brief Base parser class for Turing Machine configurations.
- *
- * This file contains the definition of the BaseParser class, which is used to parse the configuration
- * of a Turing Machine from an input stream. It serves as a base class for more specific parsers.
- */
 #ifndef TURING_MACHINE_BASEPARSER_H
 #define TURING_MACHINE_BASEPARSER_H
 
@@ -17,8 +10,6 @@
 class BaseParser {
 public:
     explicit BaseParser(std::istream& input) : inputStream(input){}
-
-    virtual ~BaseParser() = default;
 
     void parseTransitions(std::unordered_map<RegularTuringMachine::TransitionKey, RegularTuringMachine::TransitionValue, RegularTuringMachine::TransitionKeyHash>& transitions);
     void parseHaltingStates(std::set<std::string>& haltingStates);

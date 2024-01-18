@@ -8,6 +8,7 @@
 #include "turingmachine/tapevisualizer/TapeVisualizer.h"
 
 
+
 std::string readFirstLine(const std::string& filename) {
     std::ifstream file(filename);
     std::string firstLine;
@@ -95,9 +96,9 @@ TEST_CASE("Testing Turing Machine with Invalid Machine Type") {
 
 
 TEST_CASE("Testing Tape Visualization with Graphviz") {
-    std::string tapeFilePath = "../testFiles/tape.txt";
-    std::string outputGraphvizFilePath = "../testFiles/tape_graphviz.dot";
-    std::string outputPngFilePath = "../testFiles/tape_graphviz.png";
+    std::string tapeFilePath = "../testFiles/tape/tape.txt";
+    std::string outputGraphvizFilePath = "../testFiles/tape/tape_graphviz.dot";
+    std::string outputPngFilePath = "../testFiles/tape/tape_graphviz.png";
 
     std::ofstream tapeFile(tapeFilePath);
     tapeFile << ">1001 ";

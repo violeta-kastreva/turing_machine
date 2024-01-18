@@ -34,8 +34,6 @@ private:
     std::unordered_map<MultiTapeTuringMachine::TransitionKey, MultiTapeTuringMachine::TransitionValue, MultiTapeTuringMachine::TransitionKeyHash> transitions;
     std::vector<typename DoublyLinkedList<char>::Iterator> initialTapePositions;
 
-    //void initializeIterators(const std::string &combinedTape, const std::vector<std::string> &tapes);
-
     std::unordered_map<MultiTapeTuringMachine::TransitionKey, MultiTapeTuringMachine::TransitionValue, MultiTapeTuringMachine::TransitionKeyHash>
     parseTransitions();
 
