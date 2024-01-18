@@ -1,6 +1,7 @@
 digraph G {
     rankdir=LR;
     node [shape=record];
+    edge [color=white, arrowsize=0.01];
     node0 [label="&#9658;"];
     node1 [label="1"];
     node0 -> node1;
@@ -10,4 +11,6 @@ digraph G {
     node2 -> node3;
     node4 [label="1"];
     node3 -> node4;
+    node5 [label=" "];
+    node4 -> node5;
 }

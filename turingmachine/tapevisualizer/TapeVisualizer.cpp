@@ -3,26 +3,9 @@
 #include <string>
 #include "TapeVisualizer.h"
 #include <stdexcept>
-/**
- * @brief Constructor for TapeVisualizer.
- *
- * Initializes the TapeVisualizer with the provided file path to the tape's content.
- *
- * @param tapeFilePath Path to the file containing the tape's content.
- */
+
 TapeVisualizer::TapeVisualizer(const std::string& tapeFilePath) : tapeFilePath(tapeFilePath) {}
 
-/**
- * @brief Generates a Graphviz (.dot) file from the tape's content.
- *
- * Reads the tape content from the provided file and creates a Graphviz representation
- * of the tape. This includes creating nodes for each symbol on the tape and
- * connecting them in order. Special handling is provided for the tape's head symbol
- * (represented by '>'), which is visualized as a right-pointing triangle.
- *
- * @param outputFilePath Path where the Graphviz file will be saved.
- * @throws std::runtime_error if file operations fail.
- */
 void TapeVisualizer::generateGraphvizFile(const std::string& outputFilePath) const {
     std::ifstream tapeFile(tapeFilePath);
     std::ofstream outFile(outputFilePath);
@@ -35,17 +18,20 @@ void TapeVisualizer::generateGraphvizFile(const std::string& outputFilePath) con
     std::getline(tapeFile, tapeContent);
 
     outFile << "digraph G {\n";
-    outFile << "    rankdir=LR;\n";
+    outFile << "    rankdir=LR;\n"; // Ensure horizontal layout
     outFile << "    node [shape=record];\n";
+    outFile << "    edge [color=white, arrowsize=0.01];\n"; // Set edge color to white and make arrows very small
 
     std::stringstream ss(tapeContent);
     char symbol;
     int index = 0;
 
-    while (ss >> symbol) {
+    while (ss >> std::noskipws >> symbol) {
         std::string label;
         if (symbol == '>') {
             label = "&#9658;"; // right-pointing triangle
+        } else if (symbol == ' ') {
+            label = " "; // Space symbol
         } else {
             label = std::string(1, symbol);
         }

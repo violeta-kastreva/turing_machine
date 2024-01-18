@@ -30,6 +30,8 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
         machine = new IterationLoopTuringMachine();
     } else if (machineType == "MULTITAPE"){
         machine = new MultiTapeTuringMachine();
+    } else {
+        throw std::invalid_argument("Invalid machine type: " + machineType);
     }
 
     machine->init(tmData);

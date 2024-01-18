@@ -6,15 +6,8 @@
 #include <string>
 #include <set>
 #include "TuringMachine.h"
-#include "../tape/DoublyLinkedList.hpp"
+#include "../tape/DoublyLinkedList.h"
 
-/**
- * @class RegularTuringMachine
- * @brief Represents a standard Turing machine using a doubly linked list as the tape.
- *
- * Inherits from TuringMachine and implements the functionality for a regular Turing machine.
- * Utilizes a doubly linked list to represent the tape, enabling efficient operations.
- */
 class RegularTuringMachine : public TuringMachine {
 public:
     // Constructors
@@ -42,51 +35,25 @@ public:
 
     void setAlphabet(const std::set<char> &alphabet);
 
-    /**
-  * @struct TransitionKey
-  * @brief Represents a key in the transition function of a Turing Machine.
-  *
-  * This structure is used as a key in the mapping of transitions, identifying the current symbol
-  * and state of the Turing Machine.
-  */
+
     struct TransitionKey {
         char currentSymbol; ///< The current symbol on the tape.
         std::string currentState; ///< The current state of the Turing Machine.
 
-        /**
-         * @brief Compares this key with another for equality.
-         * @param other The other TransitionKey to compare with.
-         * @return True if both keys are equal, false otherwise.
-         */
+
         bool operator==(const TransitionKey& other) const;
     };
 
-    /**
-     * @struct TransitionValue
-     * @brief Represents a value in the transition function of a Turing Machine.
-     *
-     * This structure defines the action of the Turing Machine for a given key (current state and symbol).
-     * It specifies the new symbol to write, the new state to transition to, and the movement command.
-     */
+
     struct TransitionValue {
         char newSymbol; ///< The symbol to write on the tape.
         std::string newState; ///< The new state to transition to.
         char command; ///< The movement command ('L' for left, 'R' for right, 'S' for stay).
     };
 
-    /**
-     * @struct TransitionKeyHash
-     * @brief Hash function for TransitionKey, used in unordered_map.
-     *
-     * Provides a custom hash function for TransitionKey objects, allowing them to be used
-     * effectively in an unordered_map.
-     */
+
     struct TransitionKeyHash {
-        /**
-         * @brief Generates a hash value for a given TransitionKey.
-         * @param key The TransitionKey to generate the hash for.
-         * @return The generated hash value.
-         */
+
         std::size_t operator()(const TransitionKey& key) const;
     };
 

@@ -1,20 +1,9 @@
-//
-// Created by Vily on 3.1.2024 г..
-//
-
 #ifndef TURING_MACHINE_DoublyLinkedList_HPP
 #define TURING_MACHINE_DoublyLinkedList_HPP
 #include<string>
 #include<iostream>
 #include<vector>
-/**
- * @struct LinkedNode
- * @brief Node structure for DoublyLinkedList.
- *
- * Represents a node in a doubly linked list, storing a value and pointers to the next and previous nodes.
- *
- * @tparam T Type of the value stored in the node.
- */
+
 template<typename T>
 struct LinkedNode{
     T value;
@@ -25,14 +14,7 @@ struct LinkedNode{
             value(_value), next(_next), prev(_prev){}
 };
 
-/**
- * @class DoublyLinkedList
- * @brief Templated doubly linked list class.
- *
- * Implements a doubly linked list providing various operations like insertion, deletion, and iteration.
- *
- * @tparam T Type of the elements in the list.
- */
+
 template<typename T>
 class DoublyLinkedList{
 private:
@@ -159,14 +141,11 @@ public:
     }
 
 
-    //O(1)
     void push_after(Iterator, const T&);
-    void push_before(Iterator, const T&);   //SinglyLinkedList - O(N)
-
-    //O(1)
+    void push_before(Iterator, const T&);
     void delete_before(Iterator);
-    void delete_after(Iterator);            //SinglyLinkedList - O(N)
-    void delete_at(Iterator);               //SinglyLinkedList - O(N)
+    void delete_after(Iterator);
+    void delete_at(Iterator);
 
     //custom
     DoublyLinkedList makeList(const std::vector<T>&);
@@ -175,7 +154,6 @@ private:
     void copyFrom(const DoublyLinkedList& other);
 };
 
-//----Private methods----
 template<typename T>
 void DoublyLinkedList<T>::free() {
     while (head != nullptr) {
@@ -218,7 +196,6 @@ DoublyLinkedList<T>::~DoublyLinkedList(){
     free();
 }
 
-//-----ACCESS METHODS - O(1) -----
 template<typename T>
 T& DoublyLinkedList<T>::front(){
     if(empty()){

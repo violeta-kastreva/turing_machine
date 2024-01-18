@@ -24,6 +24,7 @@ TEST_CASE("Testing Regular Turing Machine") {
 
     std::string expectedOutput = ">10";
     REQUIRE(readFirstLine("../testFiles/output/basic_regular_output.txt") == expectedOutput);
+    delete factory;
 }
 
 TEST_CASE("Testing Complex Turing Machine") {
@@ -33,6 +34,7 @@ TEST_CASE("Testing Complex Turing Machine") {
 
     std::string expectedOutput = ">1001 ";
     REQUIRE(readFirstLine("../testFiles/output/regular_output.txt") == expectedOutput);
+    delete factory;
 }
 
 TEST_CASE("Testing Composition Turing Machine") {
@@ -42,6 +44,7 @@ TEST_CASE("Testing Composition Turing Machine") {
 
     std::string expectedOutput = ">BBB BB";
     REQUIRE(readFirstLine("../testFiles/output/composition_output.txt") == expectedOutput);
+    delete factory;
 }
 
 TEST_CASE("Testing Complex Composition Turing Machine") {
@@ -51,6 +54,7 @@ TEST_CASE("Testing Complex Composition Turing Machine") {
 
     std::string expectedOutput = ">1001 ";
     REQUIRE(readFirstLine("../testFiles/output/composition_output_factory.txt") == expectedOutput);
+    delete factory;
 }
 
 TEST_CASE("Testing Conditional Composition Turing Machine") {
@@ -60,6 +64,7 @@ TEST_CASE("Testing Conditional Composition Turing Machine") {
 
     std::string expectedOutput = ">1 10";
     REQUIRE(readFirstLine("../testFiles/output/conditional_output.txt") == expectedOutput);
+    delete factory;
 }
 
 TEST_CASE("Testing Loop Turing Machine") {
@@ -69,35 +74,25 @@ TEST_CASE("Testing Loop Turing Machine") {
 
     std::string expectedOutput = ">01010 ";
     REQUIRE(readFirstLine("../testFiles/output/loop_output.txt") == expectedOutput);
+    delete factory;
+}
+
+TEST_CASE("Testing Turing Machine with Wrong File Path") {
+    TuringMachineFactory* factory = new TuringMachineFactory();
+    CHECK_THROWS_WITH_AS(factory->getMachine("../testFiles/nonexistent/loop.txt"),
+                         "Unable to open file: ../testFiles/nonexistent/loop.txt",
+                         std::runtime_error);
+    delete factory;
 }
 
 
-TEST_CASE("Testing Tape Visualization") {
-    std::string tapeFilePath = "../testFiles/tape.txt";
-    std::string outputGraphvizFilePath = "../testFiles/tape_graphviz.txt";
-
-    std::ofstream tapeFile(tapeFilePath);
-    tapeFile << ">1001 ";
-    tapeFile.close();
-
-    TapeVisualizer visualizer(tapeFilePath);
-
-    bool exceptionThrown = false;
-    try {
-        visualizer.generateGraphvizFile(outputGraphvizFilePath);
-    } catch (const std::exception& e) {
-        exceptionThrown = true;
-    }
-
-    CHECK_FALSE(exceptionThrown);
-
-    std::ifstream outputFile(outputGraphvizFilePath);
-    CHECK(outputFile.good());
-    std::string content;
-    outputFile >> content;
-    CHECK_FALSE(content.empty());
-    outputFile.close();
+TEST_CASE("Testing Turing Machine with Invalid Machine Type") {
+    TuringMachineFactory* factory = new TuringMachineFactory();
+    CHECK_THROWS_AS(factory->getMachine("../testFiles/input/wrong_machine_type.txt"),
+                    std::invalid_argument);
+    delete factory;
 }
+
 
 TEST_CASE("Testing Tape Visualization with Graphviz") {
     std::string tapeFilePath = "../testFiles/tape.txt";
