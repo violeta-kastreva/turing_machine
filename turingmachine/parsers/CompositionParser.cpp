@@ -10,7 +10,6 @@ void CompositionMachineParser::parse() {
     RegularMachineParser machine2Parser(inputStream);
     machine2 = machine2Parser.parse();
 
-    // Parse the tape
     this->tape = machine2->getTape();
 }
 

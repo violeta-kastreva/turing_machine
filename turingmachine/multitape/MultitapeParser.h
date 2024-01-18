@@ -3,9 +3,9 @@
 #define TURING_MACHINE_MULTITAPEPARSER_H
 
 
-#include "BaseParser.h"
-#include "../machines/MultitapeTuringMachine.h"
-#include "BaseParser.h"
+#include "../parsers/BaseParser.h"
+#include "MultitapeTuringMachine.h"
+#include "../parsers/BaseParser.h"
 #include <vector>
 #include <string>
 #include <memory>

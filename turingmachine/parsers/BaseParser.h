@@ -14,19 +14,8 @@
 #include <string>
 #include "../machines/RegularTuringMachine.h"
 
-/**
- * @class BaseParser
- * @brief Base class for parsing Turing Machine configurations.
- *
- * BaseParser provides fundamental functionalities to parse transitions, halting states, and the tape of a Turing Machine.
- * It also extracts the initial state and tape position.
- */
 class BaseParser {
 public:
-    /**
-   * @brief Constructs a BaseParser with a given input stream.
-   * @param input Reference to the input stream for parsing.
-   */
     explicit BaseParser(std::istream& input) : inputStream(input){}
 
     virtual ~BaseParser() = default;
@@ -40,11 +29,11 @@ public:
     const std::string& getInitialState() const;
     int getInitialTapePosition() const;
 protected:
-    std::istream& inputStream; ///< Input stream from which the configuration is read.
-    std::set<std::string> states; ///< Set of states found in the Turing Machine.
-    std::set<char> alphabet; ///< Alphabet used by the Turing Machine.
-    std::string initialState; ///< Initial state of the Turing Machine.
-    int initialTapePosition; ///< Initial position on the Turing Machine's tape.
+    std::istream& inputStream;
+    std::set<std::string> states;
+    std::set<char> alphabet;
+    std::string initialState;
+    int initialTapePosition;
 
 private:
     bool isValidCommand(const char command);

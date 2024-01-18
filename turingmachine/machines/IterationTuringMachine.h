@@ -26,27 +26,13 @@
  */
 class IterationLoopTuringMachine : public TuringMachine {
 public:
-    /**
-     * @brief Constructor for IterationLoopTuringMachine with input stream.
-     * @param inputStream The input stream to read configuration data from.
-     */
+
     IterationLoopTuringMachine(std::istream& inputStream);
 
-    /**
-     * @brief Default constructor for IterationLoopTuringMachine.
-     */
     IterationLoopTuringMachine();
 
-    /**
-     * @brief Initializes the Turing machine with input data from an input stream.
-     * @param inputStream The input stream to read data from.
-     */
     void init(std::istream& inputStream) override;
 
-    /**
-     * @brief Runs the Turing machine and outputs the result to a file.
-     * @param outputFileName Name of the file to write the output to.
-     */
     void run(const std::string& outputFileName) override;
 
 private:

@@ -1,9 +1,3 @@
-/**
- * @file RegularTuringMachine.cpp
- * @brief Implementation of RegularTuringMachine class.
- *
- * This file contains the implementation of the RegularTuringMachine class
- */
 #include "RegularTuringMachine.h"
 #include "../parsers/RegularParser.h"
 #include <fstream>
@@ -11,17 +5,9 @@
 #include <algorithm>
 
 
-/**
- * @brief Default constructor for RegularTuringMachine.
- */
 RegularTuringMachine::RegularTuringMachine() {
 }
 
-/**
- * @brief Constructor for RegularTuringMachine with file input.
- * @param fileName Name of the file containing the Turing machine configuration.
- * @exception std::runtime_error Thrown if the file cannot be opened.
- */
 RegularTuringMachine::RegularTuringMachine(const std::string& fileName) {
     std::ifstream file(fileName);
     if (!file.is_open()) {
@@ -33,11 +19,6 @@ RegularTuringMachine::RegularTuringMachine(const std::string& fileName) {
 }
 
 
-/**
- * @brief Checks if the given tape string is valid based on the machine's alphabet.
- * @param inputTape The tape string to be validated.
- * @return true if the tape is valid, false otherwise.
- */
 bool RegularTuringMachine::isValidTape(const std::string& inputTape) {
     return std::all_of(inputTape.begin(), inputTape.end(), [this](char symbol) {
         return alphabet.find(symbol) != alphabet.end();
@@ -51,10 +32,7 @@ void RegularTuringMachine::setTape(const std::string& tapeString){
     }
     currentPosition = tape.begin();
 }
-/**
- * @brief Initializes the Turing machine using input from an input stream.
- * @param inputStream Input stream to read the machine configuration from.
- */
+
 void RegularTuringMachine::init(std::istream& inputStream) {
     RegularMachineParser parser(inputStream);
 
@@ -66,13 +44,11 @@ void RegularTuringMachine::init(std::istream& inputStream) {
     this->currentState = machineConfig->currentState;
     this->states = machineConfig->states;
     this->alphabet = machineConfig->alphabet;
-    // Set initial state and tape position
     this->currentState = parser.getInitialState();
     setInitialTapePosition(parser.getInitialTapePosition());
 }
 
 void RegularTuringMachine::setInitialTapePosition(int position) {
-    // Convert the integer position to an iterator position in the doubly linked list tape
     auto it = tape.begin();
     while (position > 0){
         position--;
@@ -81,22 +57,14 @@ void RegularTuringMachine::setInitialTapePosition(int position) {
     this->currentPosition = it;
 }
 
-/**
- * @brief Runs the Turing machine and outputs the result to a file.
- * @param outputFileName Name of the file to write the output to.
- * @exception std::runtime_error Thrown if the machine encounters an error during execution.
- */
 void RegularTuringMachine::run(const std::string &outputFileName) {
     while (true) {
-        // Check if the current state is a halting state
         if (haltingStates.find(currentState) != haltingStates.end()) {
             break;
         }
 
-        // Get the current symbol from the tape at the current position
         char currentSymbol = *currentPosition;
 
-        // Find the transition for the current state and symbol
         TransitionKey key{currentSymbol, currentState};
         auto it = transitions.find(key);
         if (it == transitions.end()) {
@@ -106,13 +74,10 @@ void RegularTuringMachine::run(const std::string &outputFileName) {
 
         TransitionValue transition = it->second;
 
-        // Write the new symbol to the tape at the current position
         *currentPosition = transition.newSymbol;
 
-        // Update the current state
         currentState = transition.newState;
 
-        // Move the head (current position) based on the command
         if (transition.command == 'L') {
             if (currentPosition != tape.begin()) {
                 --currentPosition;
@@ -122,7 +87,7 @@ void RegularTuringMachine::run(const std::string &outputFileName) {
             if (currentPosition == tape.end()) {
                 // Append a blank space if at the end of the tape
                 tape.push_back(' ');
-                currentPosition = tape.last(); // Update currentPosition to the new end
+                currentPosition = tape.last();
             }
         }
     }
@@ -130,11 +95,6 @@ void RegularTuringMachine::run(const std::string &outputFileName) {
     outputTape(outputFileName);
 }
 
-/**
- * @brief Writes the current state of the tape to an output file.
- * @param outputFileName Name of the file to write the output to.
- * @exception std::runtime_error Thrown if the file cannot be opened for writing.
- */
 void RegularTuringMachine::outputTape(const std::string &outputFileName){
     std::ofstream outFile(outputFileName, std::ios::out);
     if (outFile.is_open()) {
@@ -164,26 +124,13 @@ int RegularTuringMachine::getCurrentPosition() {
     return pos;
 }
 
-
-/**
- * @brief Sets the current position on the tape.
- * @param position The position to set on the tape.
- * @exception std::out_of_range Thrown if the position is out of bounds of the tape.
- */
-
 void RegularTuringMachine::setCurrentPosition(int position) {
     currentPosition = tape.begin();
     for (int i = 0; i < position && currentPosition != tape.end(); ++i) {
         ++currentPosition;
     }
-
 }
 
-/**
- * @brief Validates if the given command is valid.
- * @param command The command to validate.
- * @return true if the command is valid, false otherwise.
- */
 bool RegularTuringMachine::isValidCommand(const char command) {
     return command == 'L' || command == 'R' || command == 'S';
 }

@@ -5,29 +5,18 @@
 #include "../machines/CompositionTuringMachine.h"
 #include "../machines/ConditionalTuringMachine.h"
 #include "../machines/IterationTuringMachine.h"
-#include "../machines/MultitapeTuringMachine.h"
+#include "../multitape/MultitapeTuringMachine.h"
 
-/**
- * @brief Default constructor for TuringMachineFactory.
- */
 TuringMachineFactory::TuringMachineFactory() = default;
 
-/**
- * @brief Creates and returns a Turing machine instance based on the input file.
- * @param fileName The name of the file containing the Turing machine specifications.
- * @return A pointer to the created Turing machine instance.
- * @exception std::runtime_error Thrown if the file cannot be opened or the machine type is unknown.
- */
 TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
     std::ifstream tmData(fileName);
     if (!tmData.is_open()) {
-        std::cerr << "Unable to open file: " << fileName << std::endl;
-        return nullptr;
+        throw std::runtime_error("Unable to open file: " + fileName);
     }
 
     std::string machineType;
     std::getline(tmData, machineType);
-
 
     TuringMachine* machine = new RegularTuringMachine();
 
@@ -43,11 +32,7 @@ TuringMachine* TuringMachineFactory::getMachine(const std::string &fileName) {
         machine = new MultiTapeTuringMachine();
     }
 
-
-    ///< Call init method after object creation to properly initialize it
-    if (machine != nullptr) {
-        machine->init(tmData);
-    }
+    machine->init(tmData);
 
     return machine;
 }

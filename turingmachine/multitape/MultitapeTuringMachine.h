@@ -10,11 +10,11 @@
 #ifndef TURING_MACHINE_MULTITAPETURINGMACHINE_H
 #define TURING_MACHINE_MULTITAPETURINGMACHINE_H
 
-#include "RegularTuringMachine.h"
-#include "TuringMachine.h"
+#include "../machines/RegularTuringMachine.h"
+#include "../machines/TuringMachine.h"
 
 
-#include "TuringMachine.h"
+#include "../machines/TuringMachine.h"
 #include <string>
 #include <vector>
 #include <unordered_map>

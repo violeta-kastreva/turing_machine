@@ -1,10 +1,3 @@
-/**
- * @file ConditionalCompositionMachineParser.cpp
- * @brief Implementation of the ConditionalCompositionMachineParser class.
- *
- * This file contains the implementation of the ConditionalCompositionMachineParser class, including methods to parse
- * the configuration for Conditional Composition Turing Machines.
- */
 #include <memory>
 #include <limits>
 #include "ConditionalParser.h"
@@ -22,7 +15,6 @@ void ConditionalCompositionMachineParser::parse() {
     RegularMachineParser machine3Parser(inputStream);
     machine3 = machine3Parser.parse();
 
-    // Parse the number of conditional symbols
     int numConditionalSymbols;
     inputStream >> numConditionalSymbols;
     char symbol;
@@ -30,9 +22,8 @@ void ConditionalCompositionMachineParser::parse() {
         inputStream >> std::noskipws >> symbol;
         conditionalSymbols.insert(symbol);
     }
-    inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Skip to the next line
+    inputStream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    // Parse the tape
     parseTape(tape);
 }
 

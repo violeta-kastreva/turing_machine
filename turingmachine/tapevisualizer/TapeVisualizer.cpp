@@ -45,7 +45,7 @@ void TapeVisualizer::generateGraphvizFile(const std::string& outputFilePath) con
     while (ss >> symbol) {
         std::string label;
         if (symbol == '>') {
-            label = "&#9658;"; // Unicode for a right-pointing triangle
+            label = "&#9658;"; // right-pointing triangle
         } else {
             label = std::string(1, symbol);
         }

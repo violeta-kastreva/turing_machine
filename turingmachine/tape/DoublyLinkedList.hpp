@@ -251,7 +251,6 @@ const T& DoublyLinkedList<T>::back() const{
     return tail->value;
 }
 
-//----THE O(1) FUNCTIONS---
 template<typename T>
 bool DoublyLinkedList<T>::empty() const{
     return head == nullptr;
@@ -312,7 +311,6 @@ void DoublyLinkedList<T>::pop_front() {
     delete toDelete;
 }
 
-//-----INSERTION AFTER A PARTICULAR ELEMENT----
 
 template<typename T>
 void DoublyLinkedList<T>::push_after(Iterator it, const T& value) {
@@ -376,7 +374,6 @@ void DoublyLinkedList<T>::delete_after(Iterator it) {
     delete_at(++it);
 }
 
-//----CUSTOM FUNCTIONS----
 template<typename T>
 DoublyLinkedList<T> DoublyLinkedList<T>::makeList(const std::vector<T>& container) {
     DoublyLinkedList<T> list;

@@ -1,12 +1,3 @@
-/**
- * @file CompositionTuringMachine.h
- * @brief Defines the CompositionTuringMachine class.
- *
- * This file contains the definition of the CompositionTuringMachine class, which represents a Turing machine
- * that executes two regular Turing machines in sequence on the same tape.
- */
-
-
 #ifndef TURING_MACHINE_COMPOSITIONTURINGMACHINE_H
 #define TURING_MACHINE_COMPOSITIONTURINGMACHINE_H
 
@@ -14,14 +5,6 @@
 #include "RegularTuringMachine.h"
 #include "TuringMachine.h"
 
-
-/**
- * @class CompositionTuringMachine
- * @brief A Turing machine that composes two Regular Turing Machines.
- *
- * CompositionTuringMachine executes two Regular Turing Machines sequentially on the same tape. It initializes
- * and runs each machine in turn, passing the output tape of the first machine as the input tape to the second.
- */
 class CompositionTuringMachine : public TuringMachine{
 public:
     CompositionTuringMachine();

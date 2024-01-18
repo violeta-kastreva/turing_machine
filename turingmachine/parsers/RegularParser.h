@@ -23,14 +23,9 @@
  */
 class RegularMachineParser : public BaseParser {
 public:
-    using BaseParser::BaseParser;  // Inherit the constructor
+    using BaseParser::BaseParser;
 
-    /**
-     * @brief Parses the configuration file and constructs a RegularTuringMachine.
-     * @return A unique pointer to the configured RegularTuringMachine.
-     */
     std::unique_ptr<RegularTuringMachine> parse();
-    // Getter methods
 
 private:
     std::string initialState;

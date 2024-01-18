@@ -30,57 +30,6 @@ public:
     void setTape(const std::string& tape);
     void setCurrentState(const std::string& state);
 
-    /**
-     * @struct TransitionKey
-     * @brief Represents a key in the transition function of a Turing Machine.
-     *
-     * This structure is used as a key in the mapping of transitions, identifying the current symbol
-     * and state of the Turing Machine.
-     */
-        struct TransitionKey {
-            char currentSymbol; ///< The current symbol on the tape.
-            std::string currentState; ///< The current state of the Turing Machine.
-
-            /**
-             * @brief Compares this key with another for equality.
-             * @param other The other TransitionKey to compare with.
-             * @return True if both keys are equal, false otherwise.
-             */
-            bool operator==(const TransitionKey& other) const;
-        };
-
-    /**
-     * @struct TransitionValue
-     * @brief Represents a value in the transition function of a Turing Machine.
-     *
-     * This structure defines the action of the Turing Machine for a given key (current state and symbol).
-     * It specifies the new symbol to write, the new state to transition to, and the movement command.
-     */
-        struct TransitionValue {
-            char newSymbol; ///< The symbol to write on the tape.
-            std::string newState; ///< The new state to transition to.
-            char command; ///< The movement command ('L' for left, 'R' for right, 'S' for stay).
-        };
-
-    /**
-     * @struct TransitionKeyHash
-     * @brief Hash function for TransitionKey, used in unordered_map.
-     *
-     * Provides a custom hash function for TransitionKey objects, allowing them to be used
-     * effectively in an unordered_map.
-     */
-        struct TransitionKeyHash {
-            /**
-             * @brief Generates a hash value for a given TransitionKey.
-             * @param key The TransitionKey to generate the hash for.
-             * @return The generated hash value.
-             */
-            std::size_t operator()(const TransitionKey& key) const;
-        };
-
-
-    void setTransitions(const std::unordered_map<TransitionKey, TransitionValue, TransitionKeyHash> &transitions);
-
     void setHaltingStates(const std::set<std::string> &haltingStates);
 
     void setCurrentPosition(int position);
@@ -92,6 +41,57 @@ public:
     void setStates(const std::set<std::string> &states);
 
     void setAlphabet(const std::set<char> &alphabet);
+
+    /**
+  * @struct TransitionKey
+  * @brief Represents a key in the transition function of a Turing Machine.
+  *
+  * This structure is used as a key in the mapping of transitions, identifying the current symbol
+  * and state of the Turing Machine.
+  */
+    struct TransitionKey {
+        char currentSymbol; ///< The current symbol on the tape.
+        std::string currentState; ///< The current state of the Turing Machine.
+
+        /**
+         * @brief Compares this key with another for equality.
+         * @param other The other TransitionKey to compare with.
+         * @return True if both keys are equal, false otherwise.
+         */
+        bool operator==(const TransitionKey& other) const;
+    };
+
+    /**
+     * @struct TransitionValue
+     * @brief Represents a value in the transition function of a Turing Machine.
+     *
+     * This structure defines the action of the Turing Machine for a given key (current state and symbol).
+     * It specifies the new symbol to write, the new state to transition to, and the movement command.
+     */
+    struct TransitionValue {
+        char newSymbol; ///< The symbol to write on the tape.
+        std::string newState; ///< The new state to transition to.
+        char command; ///< The movement command ('L' for left, 'R' for right, 'S' for stay).
+    };
+
+    /**
+     * @struct TransitionKeyHash
+     * @brief Hash function for TransitionKey, used in unordered_map.
+     *
+     * Provides a custom hash function for TransitionKey objects, allowing them to be used
+     * effectively in an unordered_map.
+     */
+    struct TransitionKeyHash {
+        /**
+         * @brief Generates a hash value for a given TransitionKey.
+         * @param key The TransitionKey to generate the hash for.
+         * @return The generated hash value.
+         */
+        std::size_t operator()(const TransitionKey& key) const;
+    };
+
+    void setTransitions(const std::unordered_map<TransitionKey, TransitionValue, TransitionKeyHash> &transitions);
+
 private:
     // Private member variables
     std::set<std::string> states;

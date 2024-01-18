@@ -1,10 +1,15 @@
 COMPOSITION
 A{q0}->B{q1}R
+A{q1}->B{q1}R
 B{q1}-> {halt}S
 >{q0}->>{q0}R
+1
+halt
 SECOND MACHINE STATES
 B{q0}->C{q1}R
- {q1}-> {halt}S
+ {q1}-> {hal}S
  {q0}-> {halt}S
 >{q0}->>{q0}R
+1
+halt
 >AAABBB

@@ -7,7 +7,7 @@
  * is still in progress and should not be used or looked at until it is complete.
  */
 #include "MultitapeTuringMachine.h"
-#include "../parsers/MultitapeParser.h"
+#include "MultitapeParser.h"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
