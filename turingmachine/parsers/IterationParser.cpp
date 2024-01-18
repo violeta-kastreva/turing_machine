@@ -9,7 +9,6 @@ void IterationLoopMachineParser::parse() {
     RegularMachineParser postLoopMachineParser(inputStream);
     postLoopMachine = postLoopMachineParser.parse();
 
-    // Parse the loop condition symbol
     inputStream >> std::noskipws >> loopConditionSymbol;
     loopMachine->setTape(postLoopMachine->getTape());
     loopMachine->setCurrentPosition(1);

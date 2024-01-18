@@ -8,7 +8,6 @@
 #include "turingmachine/tapevisualizer/TapeVisualizer.h"
 
 
-
 std::string readFirstLine(const std::string& filename) {
     std::ifstream file(filename);
     std::string firstLine;
@@ -101,7 +100,7 @@ TEST_CASE("Testing Tape Visualization with Graphviz") {
     std::string outputPngFilePath = "../testFiles/tape/tape_graphviz.png";
 
     std::ofstream tapeFile(tapeFilePath);
-    tapeFile << ">1001 ";
+    tapeFile << ">1001   ";
     tapeFile.close();
 
     TapeVisualizer visualizer(tapeFilePath);

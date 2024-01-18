@@ -10,15 +10,12 @@
 
 class RegularTuringMachine : public TuringMachine {
 public:
-    // Constructors
     RegularTuringMachine();
     RegularTuringMachine(const std::string& fileName);
 
-    // Overridden methods from TuringMachine
     virtual void init(std::istream& inputStream) override;
     virtual void run(const std::string& outputFileName) override;
 
-    // Additional public methods
     std::string getTape();
     void setTape(const std::string& tape);
     void setCurrentState(const std::string& state);

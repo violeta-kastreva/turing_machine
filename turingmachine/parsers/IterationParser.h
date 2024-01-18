@@ -7,7 +7,7 @@
 
 class IterationLoopMachineParser : public BaseParser {
 public:
-    using BaseParser::BaseParser;  // Inherit the constructor
+    using BaseParser::BaseParser;
 
     void parse();
 
